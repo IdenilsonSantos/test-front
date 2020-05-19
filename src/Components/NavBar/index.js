@@ -1,16 +1,23 @@
 import React from 'react';
+
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
 import { Steps, Container, StepsItem } from './styles';
 
-function NavBar() {
+function NavBar({ location }) {
+    const { pathname } = location;
+
     return (
         <Steps>
             <Container>
-                <StepsItem className="active">Sacola</StepsItem>
-                <StepsItem>Pagamento</StepsItem>
-                <StepsItem>Confirmação</StepsItem>
+                <StepsItem className={pathname === '/' ? 'active' : ''}>Sacola</StepsItem>
+                <StepsItem className={pathname === '/payment' ? 'active' : ''}>Pagamento</StepsItem>
+                <StepsItem className={pathname === '/confirmation' ? 'active' : ''}>Confirmação</StepsItem>
             </Container>
         </Steps>
     )
 }
 
-export default NavBar;
+
+export default withRouter(NavBar);
