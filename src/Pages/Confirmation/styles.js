@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Form = styled.form`
-    padding: 10px 0;
+    padding: 10px;
 
     input {
         border: 1px solid #E7E7E7;
@@ -51,7 +51,14 @@ const ActionButton = styled.button`
     }
 `;
 
+const BuyerInfo = styled.p`
+    font-size:14px;
+    font-weight: bold;
+    width: 100%;
+    text-transform: uppercase;
+    margin: 10px 0;
+`;
 
 
 
-export { Form, LabelInput, DivideColumns, Col, ActionButton };
+export { Form, LabelInput, DivideColumns, Col, ActionButton, BuyerInfo };

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import { connect } from 'react-redux';
+import { loadResult } from '../../_redux/actions/addResults';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -8,7 +10,7 @@ import { Products, ProductItem, ProductImage, ProductInfo, ProductDescription, P
 import CardInfo from '../../Components/CardInfo';
 
 
-function Page() {
+function Page({ dispatch }) {
     const [results, setResults] = useState([])
 
     const history = useHistory();
@@ -19,6 +21,7 @@ function Page() {
                 .then(res => {
                     const response = res.data;
                     setResults([response]);
+                    dispatch(loadResult(response));
                 }).catch(err => {
                     console.log(err)
                 })
@@ -26,7 +29,8 @@ function Page() {
         fetchData();
     }, []);
 
-    function handleStep() {
+    async function handleStep() {
+
         history.push('/payment');
     }
 
@@ -50,10 +54,16 @@ function Page() {
                     ))}
                 </Products>
             </Card>
-            <CardInfo results={results} />
+            <CardInfo />
             <ActionButton onClick={() => handleStep()}>seguir para o pagamento</ActionButton>
         </Container>
     )
 }
 
-export default Page;
+const mapDispatchToProps = dispatch => {
+    return {
+        dispatch
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Page);

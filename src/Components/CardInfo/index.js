@@ -2,28 +2,36 @@ import React from 'react';
 
 import { CardDetails } from '../../globalStyles';
 import { Details, Title, Value } from './styles';
+import { connect } from 'react-redux';
 
-function CardInfo() {
+function CardInfo({ data }) {
+    console.log(data)
     return (
         <CardDetails>
             <Details>
                 <Title>Produtos</Title>
-                <Value>R$ 624,80</Value>
+                <Value>R$ {data.subTotal}</Value>
             </Details>
             <Details>
                 <Title>Frete</Title>
-                <Value>R$ 5,30</Value>
+                <Value>R$ {data.shippingTotal}</Value>
             </Details>
             <Details className="special">
                 <Title>Desconto</Title>
-                <Value>- R$ 30,00</Value>
+                <Value>- R$ {data.discount}</Value>
             </Details>
             <Details className="total">
                 <Title>total</Title>
-                <Value>R$ 600,10</Value>
+                <Value>R$ {data.total}</Value>
             </Details>
         </CardDetails>
     )
 }
 
-export default CardInfo;
+const mapStateTopProps = state => {
+    return {
+        data: state.data.data
+    }
+}
+
+export default connect(mapStateTopProps, null)(CardInfo);
