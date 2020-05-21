@@ -10,8 +10,12 @@ const Container = styled.div`
     align-items: center;
     display: flex;
     height: 100%;
-    justify-content: space-between;
     padding: 0 20px;
+    justify-content: space-between;
+
+    @media screen and (min-width: 840px){
+        justify-content: flex-end;
+    }
 `;
 
 const StepsItem = styled.h4`
@@ -19,6 +23,8 @@ const StepsItem = styled.h4`
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
+
+    margin: 0 10px;
 
     &.active {
         color: #FF7800

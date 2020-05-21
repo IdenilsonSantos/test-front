@@ -3,8 +3,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { MdCheck } from 'react-icons/md';
 
-import { Container, TitleSection, Card, HeaderConfirmation, IconSuccess, MessageConfirmation, SpinnerContent, Spinner } from '../../globalStyles';
-import { BuyerInfo } from './styles';
+import { Container, TitleSection, Card, CardContent, InfoContent, HeaderConfirmation, IconSuccess, MessageConfirmation, SpinnerContent, Spinner } from '../../globalStyles';
+import { BuyerInfo, ContentGeneric } from './styles';
 import CardInfo from '../../Components/CardInfo';
 import Products from '../../Components/Products';
 
@@ -19,18 +19,24 @@ function ConfirmationPage({ data, user }) {
                 <MessageConfirmation>compra feita com sucesso</MessageConfirmation>
             </HeaderConfirmation>
             <TitleSection>Pagamento</TitleSection>
-            <Card>
-                <BuyerInfo>
-                    <p>{`${user.card.substring(14, 0).replace(/[0-9]/g, "*")}${user.card.substr(-5)}`}</p>
-                    <p>{user.name}</p>
-                    <p>{user.expiry}</p>
-                </BuyerInfo>
-            </Card>
-            <TitleSection>Cartão de crédito</TitleSection>
-            <Card>
-                {data.length === 0 ? <SpinnerContent><Spinner /></SpinnerContent> : <Products />}
-            </Card>
-            <CardInfo />
+            <CardContent>
+                <ContentGeneric>
+                    <Card>
+                        <BuyerInfo>
+                            <p>{`${user.card.substring(14, 0).replace(/[0-9]/g, "*")}${user.card.substr(-5)}`}</p>
+                            <p>{user.name}</p>
+                            <p>{user.expiry}</p>
+                        </BuyerInfo>
+                    </Card>
+                    <TitleSection>Produtos</TitleSection>
+                    <Card>
+                        {data.length === 0 ? <SpinnerContent><Spinner /></SpinnerContent> : <Products />}
+                    </Card>
+                </ContentGeneric>
+                <InfoContent>
+                    <CardInfo />
+                </InfoContent>
+            </CardContent>
         </Container>
     )
 }

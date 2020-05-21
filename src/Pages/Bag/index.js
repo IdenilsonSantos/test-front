@@ -5,8 +5,7 @@ import { loadResult } from '../../_redux/actions/addResults';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-import { Container, TitleSection, Card, Spinner, SpinnerContent } from '../../globalStyles';
-import { ActionButton } from './styles';
+import { Container, TitleSection, Card, CardContent, InfoContent, Spinner, SpinnerContent, ActionButton } from '../../globalStyles';
 import CardInfo from '../../Components/CardInfo';
 import Products from '../../Components/Products';
 
@@ -31,14 +30,24 @@ function Page({ data, dispatch }) {
         history.push('/payment');
     }
 
+    let enableButton = data.length !== 0
+    let style;
+    if (!enableButton) {
+        style = { opacity: 0.5 }
+    }
+
     return (
         <Container>
             <TitleSection>PRODUTOS</TitleSection>
-            <Card>
-                {data.length === 0 ? <SpinnerContent><Spinner /></SpinnerContent> : <Products />}
-            </Card>
-            <CardInfo />
-            <ActionButton onClick={() => handleStep()}>seguir para o pagamento</ActionButton>
+            <CardContent>
+                <Card>
+                    {data.length === 0 ? <SpinnerContent><Spinner /></SpinnerContent> : <Products />}
+                </Card>
+                <InfoContent>
+                    <CardInfo />
+                    <ActionButton style={style} disabled={!enableButton} onClick={() => handleStep()}>seguir para o pagamento</ActionButton>
+                </InfoContent>
+            </CardContent>
         </Container>
     )
 }

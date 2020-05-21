@@ -46,17 +46,21 @@ const Card = styled.div`
     margin-bottom: 10px;
 `;
 
-const CardDetails = styled.div`
-    align-content: center;
-    display: flex;
-    border: 1px solid #CCC;
-    border-radius: 3px;
-    flex-direction: column;
-    height: auto;
-    margin: 20px 0;
-    padding: 15px;
-    width: 100%;
+const CardContent = styled.div`
+    @media screen and (min-width: 840px){
+        display: flex;
+    }
 `;
+
+const InfoContent = styled.div`
+    @media screen and (min-width: 840px){
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+`;
+
+
 
 const HeaderConfirmation = styled.div`
     width: 100%;
@@ -105,6 +109,79 @@ const Spinner = styled.div`
   animation: ${spinFrame} 1s linear infinite;
 `;
 
+const Form = styled.form`
+    padding: 10px;
+
+    input {
+        border: 1px solid #E7E7E7;
+    border-radius: 3px;
+    width: 100%;
+    height: 45px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    font-size: 14px;
+    padding: 10px;
+    color: #ccc;
+    }
+
+    @media screen and (max-width: 740px){
+        width: 100%;
+    }
+    @media screen and (min-width: 840px){
+        width: 100%;
+    }
+
+`;
+
+const LabelInput = styled.label`
+    font-size: 12px;
+    color:#CCC;
+    font-weight: bold;
+`;
+
+const InputSection = styled.div`
+@media screen and (min-width: 740px){
+        width: 100%;
+    }
+    @media screen and (min-width: 840px){
+        width: 100%;
+    }
+`;
+
+const Col = styled.div`
+    display: flex;
+    width: 49%;
+    flex-direction: column;
+`;
+
+const DivideColumns = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+const ActionButton = styled.button`
+    background-color: #FF6C00;
+    border: none;
+    border-radius: 3px;
+    box-shadow: inset 0 -3px 0 0 #D45A00, 0 2px 4px 0 rgba(0,0,0,0.25);
+    color: #FFF;
+    cursor: pointer;
+    font-weight: bold;
+    height: 60px;
+    width: 100%;
+    text-transform: uppercase;
+    transition: 0.5s all;
+
+    &:hover {
+        background-color: #D45A00;
+    }
+
+    @media screen and (min-width: 840px){
+        margin: 10px
+    }
+`;
 
 
-export { GlobalStyle, Container, TitleSection, Card, CardDetails, HeaderConfirmation, IconSuccess, MessageConfirmation, Spinner, SpinnerContent };
+
+
+export { GlobalStyle, Container, TitleSection, Card, CardContent, ActionButton, InfoContent, HeaderConfirmation, IconSuccess, MessageConfirmation, Spinner, SpinnerContent, Form, InputSection, LabelInput, Col, DivideColumns };

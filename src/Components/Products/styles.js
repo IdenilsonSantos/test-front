@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Products = styled.div`
+    width: 100%;
 `;
 
 const ProductItem = styled.div`
@@ -21,6 +22,8 @@ const ProductImage = styled.img`
 
 const ProductInfo = styled.div`
     display: flex;
+    width: 100%;
+    text-align: end;
     flex-direction: column;
 `;
 
