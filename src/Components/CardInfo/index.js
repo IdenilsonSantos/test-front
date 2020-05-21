@@ -4,25 +4,27 @@ import { CardDetails } from '../../globalStyles';
 import { Details, Title, Value } from './styles';
 import { connect } from 'react-redux';
 
-function CardInfo({ data }) {
-    console.log(data)
+import formatMoney from '../../utils/formatMoney'
+
+function CardInfo({ data, user }) {
+
     return (
         <CardDetails>
             <Details>
                 <Title>Produtos</Title>
-                <Value>R$ {data.subTotal}</Value>
+                <Value>{formatMoney(data.subTotal)}</Value>
             </Details>
             <Details>
                 <Title>Frete</Title>
-                <Value>R$ {data.shippingTotal}</Value>
+                <Value>{formatMoney(data.shippingTotal)}</Value>
             </Details>
             <Details className="special">
                 <Title>Desconto</Title>
-                <Value>- R$ {data.discount}</Value>
+                <Value>- {formatMoney(data.discount)}</Value>
             </Details>
             <Details className="total">
                 <Title>total</Title>
-                <Value>R$ {data.total}</Value>
+                <Value>{formatMoney(data.total)}</Value>
             </Details>
         </CardDetails>
     )
@@ -30,7 +32,8 @@ function CardInfo({ data }) {
 
 const mapStateTopProps = state => {
     return {
-        data: state.data.data
+        data: state.data.data,
+        user: state.user.user
     }
 }
 

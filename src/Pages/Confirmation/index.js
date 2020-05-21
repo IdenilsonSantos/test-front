@@ -1,23 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { connect } from 'react-redux';
 import { MdCheck } from 'react-icons/md';
 
-import { Container, TitleSection, Card, HeaderConfirmation, IconSuccess, MessageConfirmation } from '../../globalStyles';
-import { ActionButton, BuyerInfo } from './styles';
+import { Container, TitleSection, Card, HeaderConfirmation, IconSuccess, MessageConfirmation, SpinnerContent, Spinner } from '../../globalStyles';
+import { BuyerInfo } from './styles';
 import CardInfo from '../../Components/CardInfo';
+import Products from '../../Components/Products';
 
-function ConfirmationPage() {
-    const [maked, setMasked] = useState({
-        name: '',
-        card: '',
-        expiry: '',
-        ccv: ''
-    });
+function ConfirmationPage({ data, user }) {
 
-    console.log(maked)
-    function handleStep() {
-    }
     return (
         <Container>
             <HeaderConfirmation>
@@ -29,24 +21,23 @@ function ConfirmationPage() {
             <TitleSection>Pagamento</TitleSection>
             <Card>
                 <BuyerInfo>
-                    <p>aaaa</p>
-                    <p>aaa</p>
-                    <p>aaaa</p>
-                </BuyerInfo>p
-
+                    <p>{`${user.card.substring(14, 0).replace(/[0-9]/g, "*")}${user.card.substr(-5)}`}</p>
+                    <p>{user.name}</p>
+                    <p>{user.expiry}</p>
+                </BuyerInfo>
             </Card>
             <TitleSection>Cartão de crédito</TitleSection>
             <Card>
-                <CardInfo />
+                {data.length === 0 ? <SpinnerContent><Spinner /></SpinnerContent> : <Products />}
             </Card>
             <CardInfo />
-            <ActionButton onClick={() => handleStep()}>finalizar pedido</ActionButton>
         </Container>
     )
 }
 
 const mapStateToProps = state => {
     return {
+        user: state.user.user,
         data: state.data.data
     }
 }

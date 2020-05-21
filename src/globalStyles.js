@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, keyframes } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -38,6 +38,7 @@ const Card = styled.div`
     display: flex;
     width: 100%;
     height: auto;
+    justify-content: center;
     background-color: #fff;
     border-radius: 3px;
     box-shadow: 0px 0px 5px rgba(0,0,29,0.22);
@@ -81,6 +82,29 @@ const IconSuccess = styled.span`
 
 const MessageConfirmation = styled.h4``;
 
+const SpinnerContent = styled.div`
+    padding: 30px;
+`;
+
+const spinFrame = keyframes`
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+`;
+
+const Spinner = styled.div`
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #FF7800;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: ${spinFrame} 1s linear infinite;
+`;
 
 
-export { GlobalStyle, Container, TitleSection, Card, CardDetails, HeaderConfirmation, IconSuccess, MessageConfirmation };
+
+export { GlobalStyle, Container, TitleSection, Card, CardDetails, HeaderConfirmation, IconSuccess, MessageConfirmation, Spinner, SpinnerContent };

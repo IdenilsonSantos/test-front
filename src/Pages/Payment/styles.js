@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const Form = styled.form`
     padding: 10px 0;
+    width: 100%;
 
     input {
         border: 1px solid #E7E7E7;
@@ -14,12 +15,28 @@ const Form = styled.form`
     padding: 10px;
     color: #ccc;
     }
+
+    @media screen and (min-width: 840px){
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+    }
 `;
 
 const LabelInput = styled.label`
     font-size: 12px;
     color:#CCC;
     font-weight: bold;
+`;
+
+const InputSection = styled.div`
+@media screen and (min-width: 740px){
+        width: 100%;
+    }
+    @media screen and (min-width: 840px){
+        width: 49%;
+    }
 `;
 
 const Col = styled.div`
@@ -31,6 +48,10 @@ const Col = styled.div`
 const DivideColumns = styled.div`
     display: flex;
     justify-content: space-between;
+
+    @media screen and (min-width: 840px){
+        width: 100%;
+    }
 `;
 
 const ActionButton = styled.button`
@@ -54,4 +75,4 @@ const ActionButton = styled.button`
 
 
 
-export { Form, LabelInput, DivideColumns, Col, ActionButton };
+export { Form, LabelInput, InputSection, DivideColumns, Col, ActionButton };
